@@ -1,5 +1,3 @@
-export class Result {
-    id: number;
-    text: string;
-    valid: boolean;
-}
+  class Result {
+    constructor(public id: number, public text: string, public valid: boolean) {}
+  }

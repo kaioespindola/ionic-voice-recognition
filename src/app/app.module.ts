@@ -7,6 +7,9 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
 
 import { MyApp } from './app.component';
 import { ModalProvider } from '../providers/modal/modal';
+import { SpeechProvider } from '../providers/speech/speech';
+import { AlertProvider } from '../providers/alert/alert';
+import { ToastProvider } from '../providers/toast/toast';
 @NgModule({
   declarations: [
     MyApp
@@ -24,7 +27,10 @@ import { ModalProvider } from '../providers/modal/modal';
     SplashScreen,
     SpeechRecognition,
     ModalProvider,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SpeechProvider,
+    AlertProvider,
+    ToastProvider
   ]
 })
 export class AppModule {}
