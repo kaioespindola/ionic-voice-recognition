@@ -9,6 +9,7 @@ $font-path: "../assets/fonts";
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
+
 $app-direction: ltr;
 
 
@@ -23,7 +24,15 @@ $app-direction: ltr;
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
 
+$fab-size: 90px;
 
+$text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+$text-rendering: optimizeLegibility !important;
+$letter-spacing: 1.2;
+
+$refresher-icon-color: #fff;
+$refresher-text-color: #fff;
+$refresher-border-color: transparent;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -46,14 +55,14 @@ $colors: (
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
+$font-family-ios-base: "Product Sans";
 
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-
+$font-family-md-base: "Product Sans";
 
 
 // App Windows Variables
@@ -86,3 +95,4 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+@import url(https://fonts.googleapis.com/css?family=Product+Sans:100,300,400,500,700,800,100i,300i,400i,500i,700i,800i);
