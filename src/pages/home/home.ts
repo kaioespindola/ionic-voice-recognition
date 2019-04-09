@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ModalProvider } from '../../providers/modal/modal';
 import { SpeechProvider } from '../../providers/speech/speech';
+import { ToastProvider } from '../../providers/toast/toast';
 import { Result } from '../../interfaces/result';
+import { Commands } from '../../app/app.commands';
 @IonicPage()
 @Component({
   selector: 'page-home',
@@ -14,34 +16,40 @@ export class HomePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public modal: ModalProvider,
-    public speech: SpeechProvider) {
+    public speech: SpeechProvider,
+    public toast: ToastProvider) {
   }
 
-  results = [];
+  commands = Commands.getCommands();
   result: Result;
 
-  startListen() {
-    this.speech.startListening()
+  async startListen() {
+    await this.speech.startListening()
       .then((resposta) => {
-        console.log(resposta);
+        this.openResult('Quero pedir um guincho');
       })
   }
 
-  openResult() {
-    this.modal.showModalVoice(this.result);
+  openResult(resposta) {
+
+    setTimeout(() => {
+      
+      this.commands.forEach((command) => {
+        if(command.includes(resposta)) {
+          this.modal.showModalVoice(resposta);
+        } else {
+          console.log('Não existe este comando..');
+        }
+      });
+
+    }, 1000);
+
+    this.toast.sendToast('Reconhecendo...', 1000, 'top');
+
   }
 
   ngOnInit() {
-    console.log(this.results);
-
-    this.result = <Result>{
-      id: 1,
-      text: 'teste',
-      valid: false
-    };
-
-    this.results.push(this.result);
-    this.results.push(this.result);
+    console.log(this.commands);
   }
 
   ionViewDidLoad() {

@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { Result } from '../../interfaces/result';
+import { Commands } from '../../app/app.commands';
 
 @IonicPage()
 @Component({
@@ -14,14 +16,23 @@ export class ModalVoicePage {
     public view: ViewController) {
   }
 
+  command: string;
+
+  async getCurrentCommand() {
+    const allCommands = await Commands.getCommands();
+    console.log(allCommands);
+  }
+
   close() {
     this.view.dismiss();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModalVoicePage');
-    let data = this.navParams.get('data');
-    console.log(data);
+    this.command = this.navParams.get('data');
+    console.log(this.command);
+
+    this.getCurrentCommand();
   }
 
 }

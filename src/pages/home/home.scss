@@ -4,8 +4,8 @@ page-home {
     color: rgb(27, 2, 2);
 
     .home-bg {
-        -webkit-clip-path: polygon(100% 0, 100% 42%, 67% 66%, 0 88%, 0 0);
-        clip-path: polygon(100% 0, 100% 42%, 67% 66%, 0 88%, 0 0);   
+        -webkit-clip-path: circle(74.0% at 30% 23%);
+        clip-path: circle(74.0% at 30% 23%);
 
         background: color($colors, primary);
         background: -moz-linear-gradient(top, #488aff 0%, #6ba1ff 100%);

@@ -1,17 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-/*
-  Generated class for the ToastProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
+import { ToastController } from 'ionic-angular';
 @Injectable()
 export class ToastProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello ToastProvider Provider');
+  constructor(public toast: ToastController) {}
+
+  async sendToast(message, duration, position) {
+    const toast = await this.toast.create({
+      message: message,
+      duration: duration,
+      position: `${position}`
+    });
+    toast.present();
   }
 
 }

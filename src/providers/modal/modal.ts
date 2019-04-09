@@ -8,7 +8,7 @@ export class ModalProvider {
   }
 
   showModalVoice(message) {
-    let modal = this.modalCtrl.create('ModalVoicePage', { data: message});
+    let modal = this.modalCtrl.create('ModalVoicePage', { data: message });
     modal.present();
   }
 
