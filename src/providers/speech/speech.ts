@@ -1,38 +1,53 @@
 import { Injectable } from '@angular/core';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
+import { Commands } from '../../app/app.commands';
+import { ToastProvider } from '../../providers/toast/toast';
+import { ModalProvider } from '../../providers/modal/modal';
 
 @Injectable()
 export class SpeechProvider {
 
   constructor(
-    public speechRecognition: SpeechRecognition) {
+    public speechRecognition: SpeechRecognition,
+    public toast: ToastProvider,
+    public modal: ModalProvider) {
   }
+
+  commands = Commands.getCommands();
+  resultsFromListen = [];
 
   async startListening() {
     await this.speechRecognition.startListening()
       .subscribe((matches: Array<string>) => {
-        return matches[0];
-      }, (err => {
-        return console.log(err);
-      }))
+
+        this.commands.forEach((comando) => {
+          if(comando == matches[0].toLowerCase()) {
+            return this.modal.showModalVoice(comando);
+          }
+          else {
+            return console.log('Sem match :(');
+          }
+        });
+
+      })
   }
 
-  async stopListening() {
-    await this.speechRecognition.stopListening()
+  stopListening() {
+   this.speechRecognition.stopListening()
       .then((res) => {
         console.log(res);
       })
   }
 
-  async checkPermission() {
-    await this.speechRecognition.hasPermission()
+ checkPermission() {
+   this.speechRecognition.hasPermission()
       .then((permission) => {
         return permission;
       })
   }
 
-  async requestPermission() {
-    await this.speechRecognition.requestPermission()
+ requestPermission() {
+   this.speechRecognition.requestPermission()
     .then(
       () => console.log('Permitido'),
       () => console.log('Não Permitido')
