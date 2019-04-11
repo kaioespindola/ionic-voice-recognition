@@ -16,7 +16,7 @@ export class AboutInfoComponent {
 
   constructor() {
     console.log('Hello AboutInfoComponent Component');
-    this.text = 'Hello World';
+    this.text = 'Configurações';
   }
 
 }
