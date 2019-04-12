@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SiriShortcuts } from '@ionic-native/siri-shortcuts';
+import { SiriShortcuts, SiriShortcut } from '@ionic-native/siri-shortcuts';
 
 @Injectable()
 export class SiriProvider {
@@ -30,6 +30,12 @@ export class SiriProvider {
     })
     .then(() => console.log('Atalho apresentado'))
     .catch((error: any) => console.error(error));
+  }
+
+  activateShortcut() {
+    this.siri.getActivatedShortcut()
+      .then((data: SiriShortcut|null) => console.log(data))
+      .catch((error: any) => console.error(error));
   }
 
 }

@@ -21,6 +21,7 @@ export class MyApp {
       splashScreen.hide();
       siri.donateShortcut();
       siri.presentShortcut();
+      siri.activateShortcut();
 
     });
   }
